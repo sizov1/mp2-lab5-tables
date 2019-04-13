@@ -1,8 +1,7 @@
 ﻿#include "polynomial.h"
 
-Polynomial::Polynomial(string name, Monom* monoms, int km) : TList<Monom>()
+Polynomial::Polynomial(Monom* monoms, int km) : TList<Monom>()
 {
-    name_polinom = name;
     TLink<Monom>* curr = pHead;
     for (int i = 0; i < km; i++) {
         if (monoms[i].GetCoeff() > EPS) {
@@ -45,6 +44,12 @@ void Polynomial::Insert(const Monom& q)
 {
     (*this).TList<Monom>::Insert(q);
     (*this).CombineLikeTerms();
+}
+
+void Polynomial::Insert(double coeff, int index)
+{
+    Monom insm(coeff, index);
+    Insert(insm);
 }
 
 bool Polynomial::operator == (const Polynomial& q) const

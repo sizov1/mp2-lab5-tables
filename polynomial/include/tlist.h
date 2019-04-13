@@ -22,6 +22,7 @@ class TList
         PTLink GetFirst() const;
         PTLink GetLast() const;
 
+        void InsertBack(const T& val);
         virtual void Insert(const T& val);   // вставить на нужное место (по убыванию)
         void Delete(PTLink pl); 
 
@@ -97,7 +98,7 @@ template <typename T>
 PTLink TList<T>::GetFirst() const
 {
     if (pHead->pNext == pHead) {
-        throw Exception("cannot get first for empty list");
+        return pHead;
     }
     return pHead->pNext;
 }
@@ -113,6 +114,14 @@ PTLink TList<T>::GetLast() const
         curr = curr->pNext;
     }
     return curr;
+}
+
+template <typename T>
+void TList<T>::InsertBack(const T& val)
+{
+    PTLink ins = new TLink<T>(val);
+    GetLast()->pNext = ins;
+    ins->pNext = pHead;
 }
 
 template <typename T>

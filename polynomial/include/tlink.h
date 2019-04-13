@@ -28,6 +28,7 @@ class TLink
 
         friend class TList<T>;
         friend class Polynomial;
+        friend class PolynomialObject;
 };
 
 template <typename T>
